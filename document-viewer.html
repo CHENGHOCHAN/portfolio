@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>企劃文件閱讀器｜莊河泉作品集</title>
+  <link rel="stylesheet" href="site-fx.css">
+  <link rel="stylesheet" href="document-viewer.css">
+</head>
+<body class="document-viewer">
+  <header class="reader-bar">
+    <a class="reader-brand" href="index.html" aria-label="返回首頁">
+      <span class="brand-mark">Z</span>
+      <span><strong>莊河泉</strong><small>GAME PORTFOLIO</small></span>
+    </a>
+    <div class="reader-actions">
+      <a class="icon-action" id="reader-back" href="portfolio.html" title="返回作品" aria-label="返回作品">
+        <span aria-hidden="true">←</span><small>返回</small>
+      </a>
+      <a class="icon-action download-action" id="reader-download" href="#" download title="下載原始 Word 檔" aria-label="下載原始 Word 檔">
+        <span aria-hidden="true">↓</span><small>下載</small>
+      </a>
+    </div>
+  </header>
+
+  <aside class="reader-index" aria-label="文件章節">
+    <span class="pixel">DOCUMENT INDEX</span>
+    <nav id="reader-index"></nav>
+  </aside>
+
+  <main class="reader-main">
+    <section class="reader-cover">
+      <div class="reader-meta pixel"><span id="reader-project">企劃設計</span><span>WORD ARCHIVE</span></div>
+      <h1 id="reader-title">載入企劃文件</h1>
+      <p>此頁提供站內閱讀版本。右上角的下載圖示可取得原始 Word 檔案。</p>
+    </section>
+    <article class="reader-paper" id="reader-content" aria-live="polite"></article>
+    <div class="reader-empty" id="reader-empty" hidden>
+      <strong>找不到這份企劃文件</strong>
+      <p>請返回作品頁重新選擇文件。</p>
+      <a href="portfolio.html">返回作品庫</a>
+    </div>
+  </main>
+
+  <script src="document-data.js"></script>
+  <script src="document-viewer.js"></script>
+  <script src="site-fx.js"></script>
+</body>
+</html>
