@@ -53,6 +53,49 @@
     @media(prefers-reduced-motion:reduce){.fx-pixel,.fx-cross{display:none}.fx-hit{animation:none}.site.fx-leave{transition:none}}
     .world-sub{font-size:clamp(17px,2vw,20px);line-height:1.7;font-weight:600}.load-status,.load-dock .load-status{font-size:11px;line-height:1.6}.enter-world{font-size:13px}
     @media(max-width:760px){.world-sub{font-size:16px}.load-status,.load-dock .load-status{font-size:9px}.enter-world{font-size:12px}}
+    @media(max-width:760px){
+      .boot{place-items:start center;overflow:auto;padding:30px 14px 28px}
+      .world-load{width:min(420px,92vw);padding-top:12px;transform:none}
+      .world-load:before{margin-bottom:12px;font-size:7px}
+      .world-name{font-size:clamp(24px,8vw,34px);line-height:1.35}
+      .world-sub{max-width:320px;margin:12px auto 18px;font-size:15px;line-height:1.65}
+      .map-grid{width:min(310px,84vw);opacity:.72}
+      .map-cursor{width:10px;height:10px}
+      .load-dock{position:static;width:min(350px,92vw);margin:16px auto 0;transform:none}
+      .block-bar{gap:2px;padding:4px;border-width:3px}
+      .block-bar i{height:14px;border-width:2px}
+      .load-dock .load-status{font-size:8px;line-height:1.5;margin-top:9px}
+      .enter-world{width:min(260px,78vw);min-width:0;margin-top:16px;padding:13px 16px;font-size:11px}
+      .nav{height:72px;padding:0 16px}
+      .brand{min-width:0}.brand strong{font-size:14px}.brand small{font-size:5px}
+      .watch{min-width:116px;padding:10px 13px;text-align:center}
+      .hero{height:auto;min-height:calc(100svh - 72px);margin-top:72px;padding-bottom:128px;overflow:hidden}
+      .hero-inner{z-index:9;width:calc(100% - 38px);height:auto;padding-top:116px;padding-bottom:0}
+      .eyebrow{font-size:7px}
+      .hero h1{max-width:100%;margin:18px 0;font-size:clamp(42px,13vw,58px);line-height:1.13}
+      .lead{max-width:100%;font-size:18px;line-height:1.85;text-shadow:0 2px 18px #000}
+      .english-note{max-width:100%;margin-top:18px;color:rgba(210,218,226,.76);font-size:14px;line-height:1.75;text-shadow:0 2px 14px #000}
+      .cta{display:grid;grid-template-columns:1fr;gap:10px;width:min(310px,100%);margin-top:24px}
+      .btn{width:100%;min-height:48px;font-size:14px}
+      .stats{display:none}
+      .runner{z-index:5;left:54%;bottom:66px;width:86px;height:118px;scale:1;opacity:.95}
+      .slime{z-index:4;left:84%;bottom:82px;width:86px;height:92px;scale:1;opacity:.9}
+      .impact{z-index:6;left:73%;bottom:145px}
+      .foreground-track{z-index:3;bottom:50px;height:64px}
+      .ticker{z-index:12;height:54px;font-size:12px}
+      .ticker b,.ticker span{margin:0 22px}
+      section{padding:58px 20px}
+      .section-head{gap:16px}.section-head h2{font-size:36px;line-height:1.2}
+      footer{display:block;line-height:1.8}footer span{display:block;overflow-wrap:anywhere}
+    }
+    @media(max-width:420px){
+      .hero-inner{padding-top:104px}
+      .hero h1{font-size:clamp(38px,12.3vw,48px)}
+      .lead{font-size:17px}
+      .english-note{font-size:13px}
+      .runner{left:52%;bottom:66px;width:78px;height:108px}
+      .slime{left:82%;bottom:84px;width:78px;height:84px}
+    }
   </style>
   <link rel="stylesheet" href="site-fx.css">
 </head>
