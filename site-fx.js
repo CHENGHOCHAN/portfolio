@@ -6,6 +6,9 @@
     const ambient=document.createElement('div');
     ambient.className='site-ambient-bg';
     ambient.setAttribute('aria-hidden','true');
+    const ground=document.createElement('div');
+    ground.className='site-ambient-ground';
+    ground.setAttribute('aria-hidden','true');
     const palette=['rgba(183,255,34,.85)','rgba(105,216,232,.62)','rgba(244,246,240,.42)','rgba(123,151,88,.48)'];
     for(let i=0;i<34;i++){
       const bit=document.createElement('i');
@@ -33,6 +36,7 @@
       ambient.appendChild(chip);
     }
     document.body.prepend(ambient);
+    document.body.appendChild(ground);
   }
   initAmbientBackground();
   const visibleTextFixes=[
