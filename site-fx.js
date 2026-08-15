@@ -1,6 +1,40 @@
 (()=>{
   if(window.__globalSiteFx)return;
   window.__globalSiteFx=true;
+  function initAmbientBackground(){
+    if(document.querySelector('.site-ambient-bg'))return;
+    const ambient=document.createElement('div');
+    ambient.className='site-ambient-bg';
+    ambient.setAttribute('aria-hidden','true');
+    const palette=['rgba(183,255,34,.85)','rgba(105,216,232,.62)','rgba(244,246,240,.42)','rgba(123,151,88,.48)'];
+    for(let i=0;i<34;i++){
+      const bit=document.createElement('i');
+      bit.className='ambient-bit';
+      const size=[3,4,5,6][i%4];
+      bit.style.setProperty('--x',`${(i*29+13)%96}%`);
+      bit.style.setProperty('--y',`${(i*47+21)%88}%`);
+      bit.style.setProperty('--s',`${size}px`);
+      bit.style.setProperty('--c',palette[i%palette.length]);
+      bit.style.setProperty('--o',`${.22+(i%5)*.08}`);
+      bit.style.setProperty('--tx',`${(i%2?-1:1)*(8+i%5*4)}px`);
+      bit.style.setProperty('--ty',`${(i%3-1)*(6+i%4*3)}px`);
+      bit.style.setProperty('--d',`${9+i%7*2}s`);
+      bit.style.setProperty('--delay',`${-(i%9)*.7}s`);
+      ambient.appendChild(bit);
+    }
+    for(let i=0;i<9;i++){
+      const chip=document.createElement('i');
+      chip.className='ambient-chip';
+      chip.style.setProperty('--x',`${(i*17+8)%92}%`);
+      chip.style.setProperty('--y',`${(i*23+14)%78}%`);
+      chip.style.setProperty('--o',`${.12+(i%4)*.04}`);
+      chip.style.setProperty('--d',`${22+i%5*4}s`);
+      chip.style.setProperty('--delay',`${-i*2.4}s`);
+      ambient.appendChild(chip);
+    }
+    document.body.prepend(ambient);
+  }
+  initAmbientBackground();
   const visibleTextFixes=[
     ['说明','說明'],['检查','檢查'],['参加','參加'],['机關','機關'],
     ['解说','解說'],['判断','判斷'],['两支','兩支'],['继續','繼續']
