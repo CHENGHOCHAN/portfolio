@@ -35,8 +35,7 @@
       chip.style.setProperty('--delay',`${-i*2.4}s`);
       ambient.appendChild(chip);
     }
-    document.body.prepend(ambient);
-    document.body.appendChild(ground);
+    document.body.prepend(ambient,ground);
   }
   initAmbientBackground();
   const visibleTextFixes=[
