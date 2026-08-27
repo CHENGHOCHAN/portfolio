@@ -13,6 +13,11 @@
   };
   const stageOrder={'確定稿':0,'建模':1,'UI':2,'設計素材':3,'平面圖':4,'草稿':5};
   const escapeHtml=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const creditFor=item=>{
+    if(key==='giants')return {type:'協作者製作',detail:'視覺素材｜個人負責企劃、配樂、影片與專案統籌'};
+    if(item.major==='使用者介面設計')return {type:'個人負責',detail:'UI 資訊與功能規格｜團隊共同整合'};
+    return {type:'協作者製作',detail:'視覺素材｜個人負責戰鬥、Boss 與企劃整合'};
+  };
 
   function pickAcrossGroups(items,limit){
     const groups=new Map();
@@ -34,13 +39,11 @@
     chapterAssets[id]=assets.filter(chapter.match);
     pickAcrossGroups(chapterAssets[id],chapter.quota).forEach(item=>featuredAssets.add(item.src));
   });
-  document.querySelectorAll('[data-asset-count]').forEach(node=>node.textContent=assets.length);
-
   const firstChapter=document.querySelector('[data-chapter]');
   if(firstChapter){
     const switcher=document.createElement('div');
     switcher.className='archive-view-switch';
-    switcher.innerHTML=`<div><span class="section-label pixel">ARCHIVE VIEW</span><strong>選擇閱讀密度</strong><p>先看代表素材，或展開完整製作檔案。</p></div><div class="archive-view-actions"><button class="active" type="button" data-archive-view="featured">精選 ${featuredAssets.size}</button><button type="button" data-archive-view="all">完整素材庫 ${assets.length}</button></div>`;
+    switcher.innerHTML=`<div><span class="section-label pixel">ARCHIVE VIEW</span><strong>選擇閱讀密度</strong><p>先看代表素材，或展開完整製作檔案。</p></div><div class="archive-view-actions"><button class="active" type="button" data-archive-view="featured">精選素材</button><button type="button" data-archive-view="all">完整素材庫</button></div>`;
     firstChapter.parentNode.insertBefore(switcher,firstChapter);
   }
 
@@ -52,7 +55,7 @@
     const selected=mode==='all'?allItems:allItems.filter(item=>featuredAssets.has(item.src));
     section.querySelector('[data-title]').textContent=chapter.title;
     section.querySelector('[data-desc]').textContent=chapter.desc;
-    section.querySelector('[data-count]').textContent=mode==='all'?`${allItems.length} ITEMS`:`${selected.length} 精選 / ${allItems.length}`;
+    section.querySelector('[data-count]').textContent=mode==='all'?'完整分類':'精選素材';
     const target=section.querySelector('[data-content]');
     const groups=new Map();
     selected.forEach(item=>{if(!groups.has(item.group))groups.set(item.group,[]);groups.get(item.group).push(item)});
@@ -61,7 +64,7 @@
     if(!ordered.length){target.innerHTML='<p class="empty-note">此分類目前沒有素材。</p>';return}
     target.innerHTML=ordered.map(([group,items],index)=>{
       const label=group.replace(items[0].major+' / ','');
-      const cards=items.map(item=>`<figure class="asset-card"><button class="asset-button" type="button" data-src="${escapeHtml(item.src)}" data-caption="${escapeHtml(group+' / '+item.name)}"><img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.name)}" loading="lazy" decoding="async"></button><figcaption class="asset-caption"><strong>${escapeHtml(item.name)}</strong>${escapeHtml(item.stage)}</figcaption></figure>`).join('');
+      const cards=items.map(item=>{const credit=creditFor(item);return `<figure class="asset-card"><button class="asset-button" type="button" data-src="${escapeHtml(item.src)}" data-caption="${escapeHtml(group+' / '+item.name+'｜'+credit.type+'：'+credit.detail)}"><img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.name)}" loading="lazy" decoding="async"></button><figcaption class="asset-caption"><strong>${escapeHtml(item.name)}</strong><span class="asset-stage">${escapeHtml(item.stage)}</span><span class="asset-credit"><b>${escapeHtml(credit.type)}</b>${escapeHtml(credit.detail)}</span></figcaption></figure>`}).join('');
       return `<details class="archive-group" ${index===0?'open':''}><summary><span class="group-heading"><span class="stage-tag">${escapeHtml(items[0].stage)}</span><h3>${escapeHtml(label)}</h3></span><span class="group-meta">${items.length} 張</span></summary><div class="asset-grid">${cards}</div></details>`;
     }).join('');
   }
