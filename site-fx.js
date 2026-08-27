@@ -82,14 +82,11 @@
     'giants.html':{number:'05',name:'GIANTS'},
     'soul.html':{number:'06',name:'SOUL'},
     'contact.html':{number:'07',name:'CONTACT'},
+    'tiny-factory.html':{number:'08',name:'TINY FACTORY'},
     'document-viewer.html':{number:'DOC',name:'DOCUMENT'}
   };
   const file=decodeURIComponent(location.pathname.split('/').pop()||'index.html').toLowerCase();
   const current=pages[file]||{number:'--',name:'ARCHIVE'};
-  if(file==='index.html'){
-    const groups=document.querySelector('#about .tool-groups');
-    if(groups)groups.innerHTML='<article class="tool-group"><div class="tool-role pixel">FOCUS · 01</div><h3>設計判斷</h3><p>從玩家感受、目標與限制出發，將抽象概念整理成可執行的系統與關卡規則。</p></article><article class="tool-group"><div class="tool-role pixel">FOCUS · 02</div><h3>跨專業溝通</h3><p>用企劃文件、流程與視覺參考，協調程式、美術、建模與聲音製作。</p></article><article class="tool-group"><div class="tool-role pixel">FOCUS · 03</div><h3>迭代驗證</h3><p>透過原型、實機測試與展場回饋，持續調整節奏、引導與玩家理解。</p></article>';
-  }
   if(file!=='contact.html')document.querySelectorAll('a[href^="mailto:"]').forEach(link=>{link.href='contact.html'});
   const corner=document.createElement('div');
   corner.className='page-corner';
